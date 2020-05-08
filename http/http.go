@@ -2,7 +2,7 @@ package http
 
 import (
 	"encoding/json"
-	"github.com/niean/mailsender/g"
+	"github.com/coraldane/mailsender/g"
 	"log"
 	"net/http"
 )

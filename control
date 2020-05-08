@@ -3,7 +3,7 @@ HOMEDIR=$(cd $(dirname $0); pwd)
 cd $HOMEDIR
 
 module=mailsender
-app=tycs-$module
+app=$module
 cfg=cfg.json
 pidfile=var/app.pid
 logfile=var/app.log

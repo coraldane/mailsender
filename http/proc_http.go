@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/niean/mailsender/proc"
+	"github.com/coraldane/mailsender/proc"
 	"net/http"
 )
 

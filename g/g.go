@@ -8,7 +8,7 @@ import (
 // changelog:
 // 0.0.1: basic mail-sending service, http-api, readme. send mail concurrently
 const (
-	VERSION = "0.0.1"
+	VERSION = "1.0.0"
 )
 
 func init() {

@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/niean/mailsender/g"
-	"github.com/niean/mailsender/http"
-	"github.com/niean/mailsender/sender"
+	"github.com/coraldane/mailsender/g"
+	"github.com/coraldane/mailsender/http"
+	"github.com/coraldane/mailsender/sender"
 	"os"
 	"os/signal"
 	"syscall"

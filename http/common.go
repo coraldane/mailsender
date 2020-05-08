@@ -2,7 +2,7 @@ package http
 
 import (
 	"fmt"
-	"github.com/niean/mailsender/g"
+	"github.com/coraldane/mailsender/g"
 	"net/http"
 )
 

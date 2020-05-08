@@ -2,8 +2,8 @@ package http
 
 import (
 	"fmt"
-	"github.com/niean/mailsender/proc"
-	"github.com/niean/mailsender/sender"
+	"github.com/coraldane/mailsender/proc"
+	"github.com/coraldane/mailsender/sender"
 	"net/http"
 	"strings"
 )

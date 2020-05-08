@@ -1,11 +1,12 @@
 package sender
 
 import (
+	"crypto/tls"
 	nsema "github.com/niean/gotools/concurrent/semaphore"
 	nlist "github.com/niean/gotools/container/list"
-	gomail "github.com/niean/mail/gomail"
-	"github.com/niean/mailsender/g"
-	"github.com/niean/mailsender/proc"
+	"github.com/go-gomail/gomail"
+	"github.com/coraldane/mailsender/g"
+	"github.com/coraldane/mailsender/proc"
 	"log"
 	"time"
 )
@@ -56,13 +57,7 @@ func sendMail(mo *MailObject) {
 	// from
 	msg.SetAddressHeader("From", mcfg.MailServerAccount, mo.FromUser)
 	// receivers
-	for i, to := range mo.Receivers {
-		if i == 0 {
-			msg.SetHeader("To", to)
-		} else {
-			msg.AddHeader("To", to)
-		}
-	}
+	msg.SetHeader("To", mo.Receivers...)
 	// subject
 	msg.SetHeader("Subject", mo.Subject)
 	// content
@@ -71,8 +66,9 @@ func sendMail(mo *MailObject) {
 	// statistics
 	proc.MailSendCnt.Incr()
 
-	m := gomail.NewMailer(mcfg.MailServerHost, mcfg.MailServerAccount, mcfg.MailServerPasswd, mcfg.MailServerPort)
-	if err := m.Send(msg); err != nil {
+	d := gomail.NewDialer(mcfg.MailServerHost, mcfg.MailServerPort, mcfg.MailServerAccount, mcfg.MailServerPasswd)
+	d.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+	if err := d.DialAndSend(msg); err != nil {
 		// statistics
 		proc.MailSendErrCnt.Incr()
 		log.Println(err, ", mailObject:", mo)
